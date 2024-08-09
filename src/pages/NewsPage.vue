@@ -12,7 +12,7 @@
                   <q-card-section>
                     Обучение студентов инвалидов - это истинное проявление человечности, заботы и важности равенства возможностей. Это процесс, который требует не только терпения и понимания, но и индивидуального подхода к каждому студенту, учитывая их особенности и потребности.
                   </q-card-section>
-                  <q-expansion-item v-model="openFirstItem" header-class="text-blue" label="Читать далее" v-if="openFirstItem==false"/>
+                  <q-expansion-item v-model="openFirstItem" header-class="text-blue" label="Читать далее..." v-if="openFirstItem==false"/>
                 </q-card>
               </q-card-section>
               <q-card-section class="flex row no-wrap" v-if="openFirstItem==true">
@@ -46,7 +46,7 @@
                   <q-card-section>
                     Общение между людьми инвалидами имеет особенно важное значение, так как оно помогает им чувствовать себя поддержанными, понимаемыми и важными. Встречи с другими людьми, столкнувшимися с подобными трудностями, позволяют почувствовать себя частью сообщества, где их проблемы и переживания понимают и принимают 
                   </q-card-section>
-                  <q-expansion-item v-model="openSecondItem" header-class="text-blue" label="Читать далее" v-if="openSecondItem==false"/>
+                  <q-expansion-item v-model="openSecondItem" header-class="text-blue" label="Читать далее..." v-if="openSecondItem==false"/>
                 </q-card>
               </q-card-section>
                 <q-card-section class="flex row no-wrap" v-if="openSecondItem==true">
@@ -71,7 +71,7 @@
                   <q-card-section>
                     Творчество людей с инвалидностью играет важную роль в культурной жизни общества, демонстрируя их талант и уникальный взгляд на мир. Такие художники, музыканты, писатели и актеры часто преодолевают значительные трудности, чтобы поделиться своим искусством, что вдохновляет и мотивирует других.
                   </q-card-section>
-                  <q-expansion-item v-model="openThirdItem" header-class="text-blue" label="Читать далее" v-if="openThirdItem==false"/>
+                  <q-expansion-item v-model="openThirdItem" header-class="text-blue" label="Читать далее..." v-if="openThirdItem==false"/>
                 </q-card>
               </q-card-section>
                 <q-card-section class="flex row no-wrap" v-if="openThirdItem==true">
