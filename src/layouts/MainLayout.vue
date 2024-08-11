@@ -36,8 +36,8 @@
             <q-route-tab to="/aboutPage" label="О НАС" />
             <q-route-tab to="/newsPage" label="НОВОСТИ" />
             <q-route-tab to="/npbPage" label="НБП" />
-            <q-route-tab to="/page3" label="ЧаВо" />
-            <q-route-tab to="/page3" label="Линки" />
+            <q-route-tab to="/chavoPage" label="ЧаВо" />
+            <q-route-tab to="/linksPage" label="Линки" />
           </q-tabs>
         </q-container>
       </q-toolbar>
@@ -68,8 +68,8 @@
           <q-route-tab to="/aboutPage" label="О нас" />
           <q-route-tab to="/newsPage" label="Новости" />
           <q-route-tab to="/npbPage" label="Нормативно-правовая база" />
-          <q-route-tab to="/page3" label="Часто-задаваемые вопросы" />
-          <q-route-tab to="/page3" label="Полезные ссылки" />
+          <q-route-tab to="/chavoPage" label="Часто-задаваемые вопросы" />
+          <q-route-tab to="/linksPage" label="Полезные ссылки" />
         </q-tabs>
         <q-container>
           <q-item class="text-">Контакты</q-item>
