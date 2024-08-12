@@ -29,7 +29,7 @@
               icon="local_phone"
               label="+7(999)999-99-99"
             />
-            <q-btn class="q-mx-sm">Авторизация</q-btn>
+            <q-btn to="/authPage" class="q-mx-sm">Авторизация</q-btn>
           </q-tabs>
           <q-tabs class="text-right">
             <q-route-tab to="/" label="ГЛАВНАЯ" />

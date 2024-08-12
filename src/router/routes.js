@@ -9,6 +9,8 @@ const routes = [
       { path: '/npbPage', component: () => import('pages/NPBPage.vue') },
       { path: '/chavoPage', component: () => import('pages/ChAVOPage.vue') },
       { path: '/linksPage', component: () => import('pages/LinksPage.vue') },
+      { path: '/authPage', component: () => import('pages/AuthPage.vue') },
+      { path: '/signupPage', component: () => import('pages/SignUpPage.vue') },
     ]
   },
 
