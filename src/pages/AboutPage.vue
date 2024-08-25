@@ -1,9 +1,9 @@
 <template>
     <q-page class="q-pb-none">
-        <q-sections class="">
+        <div class="">
             <q-img class="relative" src="AboutPage/about_people.svg"/>
             <q-img class="logo_ovz" src="AboutPage/logo_ovz.svg" />          
-        </q-sections>
+        </div>
         <q-card class="card_bg text-bold text-h6 q-pl-xl">
             <q-card-section>
                 Сформированные социально-психологические карты помогут сотрудникам вуза лучше понять потребности студентов с инвалидностью, обеспечивая более эффективную поддержку, что позволит создать благоприятные условия для их адаптации и успешного обучения в вузе.

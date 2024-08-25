@@ -5,10 +5,10 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/aboutPage', component: () => import('pages/AboutPage.vue') },
-      { path: '/newsPage', component: () => import('pages/NewsPage.vue') },
-      { path: '/npbPage', component: () => import('pages/NPBPage.vue') },
-      { path: '/chavoPage', component: () => import('pages/ChAVOPage.vue') },
-      { path: '/linksPage', component: () => import('pages/LinksPage.vue') },
+      { path: '/newsPage', component: () => import('pages/NewsPage.vue'), meta: {requiresAuth: true} },
+      { path: '/npbPage', component: () => import('pages/NPBPage.vue'), meta: { requiresAuth: true } },
+      { path: '/chavoPage', component: () => import('pages/ChAVOPage.vue'), meta: { requiresAuth: true } },
+      { path: '/linksPage', component: () => import('pages/LinksPage.vue'), meta: { requiresAuth: true } },
       { path: '/authPage', component: () => import('pages/AuthPage.vue') },
       { path: '/signupPage', component: () => import('pages/SignUpPage.vue') },
     ]
@@ -22,4 +22,6 @@ const routes = [
   }
 ]
 
-export default routes
+
+export default routes;
+

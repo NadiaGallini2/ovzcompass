@@ -1,6 +1,6 @@
 <template>
     <q-card class="lineral q-pa-xl">
-        <q-container class="q-mb-xl">
+        <div class="q-mb-xl">
         <q-card class="my-card">
             <q-card-section class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
               ОБУЧЕНИЕ
@@ -85,7 +85,7 @@
                 </q-card-section>
             </q-card-section>
     </q-card>
-        </q-container>
+  </div>
 </q-card>
 </template>
 

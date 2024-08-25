@@ -15,21 +15,29 @@
             <img src="GPA.svg" />
           </q-avatar>
         </q-toolbar-title>
-        <q-container align="right">
+        <div align="right">
           <q-tabs inline-label>
-            <q-tab
-              class="q-mx-sm"
+            <q-btn
+              class="q-mx-sm btn_style"
               name="location"
               icon="location_on"
               label="Ялта, ул. Стахановская, д. 11"
+              href="https://yandex.ru/maps/977/republic-of-crimea/house/stakhanovskaya_ulitsa_11/Z00Ydw9oSkIGQFpufXlwd3hhZw==/?ll=34.188200%2C44.516519&z=16.92"
+              target="blank"
+              
             />
-            <q-tab
-              class="q-mx-sm"
+            <q-btn
+              class="q-mx-sm btn_style"
               name="phone"
               icon="local_phone"
               label="+7(999)999-99-99"
-            />
-            <q-btn to="/authPage" class="q-mx-sm">Авторизация</q-btn>
+              />
+              
+                <SignOutButton v-if="authStore.authStatus"/>
+                <q-btn v-if="authStore.authStatus" class="q-mx-sm q-my-sm" icon="account_circle"></q-btn>
+              
+                <q-btn v-if="!authStore.authStatus" to="/authPage" class="q-mx-sm q-my-sm">Авторизация</q-btn>
+               
           </q-tabs>
           <q-tabs class="text-right">
             <q-route-tab to="/" label="ГЛАВНАЯ" />
@@ -39,12 +47,12 @@
             <q-route-tab to="/chavoPage" label="ЧаВо" />
             <q-route-tab to="/linksPage" label="Линки" />
           </q-tabs>
-        </q-container>
+        </div>
       </q-toolbar>
     </q-header>
 
     <q-page-container style="padding-bottom: 0px" class="container q-mx-auto">
-      <router-view />
+      <router-view/>
     </q-page-container>
 
     <q-footer elevated class="bg-primary-8 footer_style text-white">
@@ -71,18 +79,36 @@
           <q-route-tab to="/chavoPage" label="Часто-задаваемые вопросы" />
           <q-route-tab to="/linksPage" label="Полезные ссылки" />
         </q-tabs>
-        <q-container>
-          <q-item class="text-">Контакты</q-item>
+        <div>
+          <q-item class="">Контакты</q-item>
           <q-list>
             <q-item>+7(999)999-99-99</q-item>
             <q-item>Заказать звонок</q-item>
             <q-item>mail@mail.ru</q-item>
           </q-list>
-        </q-container>
+        </div>
       </q-toolbar>
     </q-footer>
   </q-layout>
 </template>
+
+<script setup>
+import { useAuth } from 'vue-clerk';
+import { ref, watch} from 'vue';
+import { SignedIn, SignedOut, SignOutButton, useSession} from 'vue-clerk';
+
+
+const {session} = useSession();
+const { isLoaded, isSignedIn } = useAuth();
+
+
+import { useAuthStore } from "src/stores/sessionStore";
+
+const authStore = useAuthStore();
+console.log(isSignedIn);
+console.log(session);
+
+</script>
 
 <style scoped>
 .container {
@@ -113,5 +139,8 @@
 }
 .fixed-bottom {
   position: static;
+}
+.btn_style::before{
+ box-shadow: none !important;
 }
 </style>

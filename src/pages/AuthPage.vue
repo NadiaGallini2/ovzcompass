@@ -7,7 +7,7 @@
       <q-card-section class="text-grey q-px-md q-py-sm text-center"
         >Используйте Вашу учетную запись, чтобы войти</q-card-section
       >
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+      <q-form @submit.prevent="handleAuth" @reset="onReset" class="q-gutter-md">
         <q-input
           filled
           type="email"
@@ -51,22 +51,47 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, nextTick, watch } from "vue";
+import { useSignIn, useClerk } from "vue-clerk";
+import { useRouter } from "vue-router";
 
 const email = ref('');
 const password = ref('');
 const accept = ref(false);
 const isPwd = ref(true);
+const router = useRouter();
+const {setActive} = useClerk();
+const { isLoaded, signIn, session } = useSignIn();
 
 const isSubmitDisabled = computed(() => {
   return !email.value || !password.value || !accept.value;
 });
 
-const onSubmit = () => {
-  if (accept.value) {
-    alert('успех');
-  } else {
-    alert("Вы не приняли условия");
+const handleAuth = async () => {
+  if (!isLoaded.value) {
+    console.log('Clerk is not loaded yet');
+    return;
+  }
+
+  try {
+    const signInAttempt = await signIn.value?.create({
+      identifier: email.value,
+      password: password.value,
+    });
+
+    console.log('SignIn attempt:', signInAttempt);
+    console.log('SignIn status:', signInAttempt?.status);
+
+    if (signInAttempt?.status === 'complete') {
+      setActive({
+        session: signInAttempt.createdSessionId,
+      })
+      router.push('/');
+    } else {
+      console.error('Authentication not completed', signInAttempt?.status);
+    }
+  } catch (error) {
+    console.error('Authentication error', error);
   }
 };
 
@@ -75,7 +100,9 @@ const onReset = () => {
   password.value = '';
   accept.value = false;
 };
+
 </script>
+
 
 <style scoped>
 .q-tab{

@@ -1,5 +1,5 @@
 <template>
-    <q-container>
+    <div>
 
         <q-card-section class="text-white text-h3 text-center bg-primary full-width q-py-md">
             ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ
@@ -67,7 +67,7 @@
     <div style="max-width: 1000px;" class="q-mx-auto">
         <q-img src="Chavo_img.svg"/>
     </div>
-</q-container>
+</div>
 </template>
 
 <style>

@@ -1,14 +1,14 @@
 <template>
   <q-page class="flex justify-center ">
-    <q-sections class="lineral full-width text-center">
+    <div class="lineral full-width text-center">
       <img class="q-mx-auto" src="IndexPage/MainFotoIndexPage.svg" alt="">
-    </q-sections>
-    <q-section class="text-white text-h4 text-center lineral q-py-sm">
+    </div>
+    <div class="text-white text-h4 text-center lineral q-py-sm">
       Интеллектуальная система для автоматизации формирования социально-психологической карты студентов с инвалидностью
-    </q-section>
-    <q-section class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
+  </div>
+    <div class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
       О НАС
-    </q-section>
+</div>
     <q-card>
       <q-card-section class="text-h5 text-bold">Сформированные социально-психологические карты помогут сотрудникам вуза лучше понять потребности студентов с инвалидностью, обеспечивая более эффективную поддержку, что позволит создать благоприятные условия для их адаптации и успешного обучения в вузе.</q-card-section>
       <q-card-section class="text-h5 text-bold q-mb-md">
@@ -18,11 +18,11 @@
         <a class="link_decoration" href="#">Читать далее...</a>
       </q-card-section>
   </q-card>
-  <q-section class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
+  <div class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
       НОВОСТИ
-    </q-section>
+    </div>
 
-    <q-container class="flex justify-around full-width">
+    <div class="flex justify-around full-width">
     <q-card class="my-card q-mt-xl">
       <img src="IndexPage/Card_img1.svg">
       <q-card-section class="text-white text-h4 text-center bg-primary full-width text-bold q-py-md">
@@ -67,7 +67,7 @@
         </q-card-section>
       </q-card>
     </q-card>
-  </q-container>
+  </div>
 
   </q-page>
 </template>

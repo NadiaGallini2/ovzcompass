@@ -7,7 +7,7 @@
       <q-card-section class="text-grey q-px-md q-py-sm text-center"
         >Регистрация аккаунта</q-card-section
       >
-      <q-form @submit="onSubmit" class="q-gutter-md">
+      <q-form v-if="!verification" @submit.prevent="handleSubmit" class="q-gutter-md">
         <q-input
           ref="nameRef"
           filled
@@ -74,7 +74,22 @@
             <q-toggle v-model="accept" label="I accept the license and terms" />
             <q-btn :disable="isSubmitDisabled" label="Регистрация" type="submit" color="primary" />
         </q-card-section>
+        
       </q-form>
+      <q-form v-else @click.prevent="onVerify"  class="q-gutter-md">
+        <q-input
+        class=""
+          filled
+          type="number"
+          v-model="code"
+          hint="Please type your code verification"
+          lazy-rules
+        />
+        <q-card-section class="flex justify-center q-mt-sm">
+          <q-btn type="submit" label="Подтвердить" color="primary"/>
+        </q-card-section>
+      </q-form>
+
     </q-card-section>
     <q-img src="Registr_img.svg" style="max-width: 800px" />
   </q-card-section>
@@ -83,6 +98,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useQuasar } from "quasar";
+import { useSignUp, useAuth, useClerk} from 'vue-clerk'
+import { useRouter } from "vue-router";
+
+const { isLoaded, signUp} = useSignUp()
+const {setActive} = useClerk()
 
 const name = ref(null);
 const nameRef = ref(null);
@@ -94,9 +114,77 @@ const email = ref("");
 const password = ref("");
 const isPwd = ref(true);
 const $q = useQuasar();
-const accept = ref(false)
+const accept = ref(false);
+const verification = ref(false);
+const code = ref('');
+const router = useRouter();
 
+const handleSubmit = async () => {
+   if (!isLoaded.value) {
+     return;
+   }
+   nameRef.value.validate();
+   ageRef.value.validate();
 
+   if (nameRef.value.hasError || ageRef.value.hasError) {
+     return;
+   }
+
+   if (!accept.value) {
+     $q.notify({
+       color: 'negative',
+       message: 'You need to accept the license and terms first'
+     });
+     return;
+   }
+
+   try {
+     await signUp.value?.create({
+       emailAddress: email.value,
+       password: password.value,
+     });
+     
+     
+
+     await signUp.value?.prepareEmailAddressVerification({
+       strategy: 'email_code'
+     });
+
+     $q.notify({
+       icon: 'done',
+       color: 'positive',
+       message: 'Submitted'
+     });
+
+     verification.value = true;
+   } catch (error) {
+     console.log(error);
+   }
+};
+
+const onVerify = async () => {
+  if (!isLoaded.value) {
+     return;
+   }
+   try {
+    const complateSignUp = await signUp.value?.attemptEmailAddressVerification({
+      code: code.value
+    })
+    if(complateSignUp?.status === 'complete'){
+      setActive({
+        session: complateSignUp.createdSessionId,
+      })
+      router.push('/')
+    }
+    if(complateSignUp?.status !== 'complete'){
+      console.log(JSON.stringify(complateSignUp, null, 2));
+    }
+    verification.value = true;
+   } catch (error) {
+    console.log(error);
+    
+   }
+}
 
 const nameRules = [(val) => (val && val.length > 0) || "Please type something"];
 const ageRules = [
@@ -105,33 +193,7 @@ const ageRules = [
 ];
 
 const isSubmitDisabled = computed(() => {
-  return !email.value || !password.value || name.value;
+  return !email.value || !password.value || !name.value;
 });
 
-const onSubmit = () => {
-    nameRef.value.validate();
-    ageRef.value.validate();
-    if (nameRef.value.hasError || ageRef.value.hasError) {
-          // form has error
-        }
-        else if (accept.value !== true) {
-          $q.notify({
-            color: 'negative',
-            message: 'You need to accept the license and terms first'
-          })
-        }
-        else {
-          $q.notify({
-            icon: 'done',
-            color: 'positive',
-            message: 'Submitted'
-          })
-        }
-};
-
-const onReset = () => {
-  email.value = "";
-  password.value = "";
-  accept.value = false;
-};
 </script>
